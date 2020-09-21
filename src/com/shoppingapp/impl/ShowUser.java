@@ -1,28 +1,29 @@
 package com.shoppingapp.impl;
 
+import com.shoppingapp.entity.User;
 import com.shoppingapp.framework.State;
 
-public class UserMenu extends State {
+public class ShowUser extends State {
 
-	public UserMenu() {
-		super("UserMenu");
+	public ShowUser() {
+		super("ShowUser");
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void initialize() {
+		User user = (User) controller.persistData.get("user");
 		startPrint();
-		printOp("MainMenu", "LOGOUT");
-		printOp("BuyMenu", "MAKE PURCHASE");
-		printOp("ReturnMenu", "RETURN ITEM");
-		printOp("ShowPurchases", "PURCHASE HISTORY");
-		printOp("ShowUser", "ACCOUNT DETAILS");
+		print("Name", user.name);
+		print("Email", user.email);
+		print("Server-side password", user.password);
 		endPrint();
 	}
 
 	@Override
 	protected void update() {
-		inputOp();
+		pause();
+		changeState("UserMenu");
 	}
 
 	@Override

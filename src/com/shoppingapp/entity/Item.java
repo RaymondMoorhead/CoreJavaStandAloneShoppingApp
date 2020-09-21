@@ -6,6 +6,18 @@ public class Item {
 	public String code;
 	public double price;
 	
+	public Item() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Item(String name, String code, double price) {
+		super();
+		this.name = name;
+		this.code = code;
+		this.price = price;
+	}
+	
 	public String getName() {
 		return name;
 	}

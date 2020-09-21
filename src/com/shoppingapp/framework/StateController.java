@@ -19,7 +19,7 @@ public class StateController {
 			curState.update();
 			if(changeState != null) {
 				curState.exit();
-				curState = states.get(startState);
+				curState = states.get(changeState);
 				curState.initialize();
 				changeState = null;
 			}

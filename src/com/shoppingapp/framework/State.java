@@ -1,18 +1,24 @@
 package com.shoppingapp.framework;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.shoppingapp.utility.ConsoleExtras;
 
 public abstract class State {
-
-	// INTERFACE FOR CONTROLLER
 	
-	public final String name;
-	StateController controller;
-	Scanner input;
+	// TO OVERRIDE
+	
+	protected State(String name) {this.name = name; input = new Scanner(System.in);}
+	
+	protected abstract void initialize();
+	protected abstract void update();
+	protected abstract void exit();
 	
 	// INTERFACE FOR EXTENDED CLASSES
+	
+	protected StateController controller;
+	protected Scanner input;
 	
 	protected void changeState(String name) {
 		controller.changeState(name);
@@ -20,6 +26,7 @@ public abstract class State {
 	
 	protected void shutdown() {
 		controller.changeState(null);
+		System.out.println("Goodbye");
 	}
 	
 	protected void startPrint() {
@@ -29,6 +36,13 @@ public abstract class State {
 	    
 	    System.out.println("    Standalone Ecommerce App");
 		System.out.println("+===============================================+"); // 47 '='
+		options.clear();
+	}
+	
+	protected void printOp(String toState, String... data) {
+		options.add(toState);
+		data[0] = Integer.toString(options.size()) + '.' + data[0];
+		print(data);
 	}
 	
 	protected void print(String... data) {
@@ -48,6 +62,13 @@ public abstract class State {
 		}
 	}
 	
+	protected void inputOp() {
+		System.out.printf("Please select an option %d-%d: ", 1, options.size());
+		int result = input.nextInt();
+		if(result >= 1 && result <= options.size())
+			changeState(options.get(result - 1));
+	}
+	
 	protected void endPrint() {
 		System.out.println("+===============================================+\n"); // 47 '='
 	}
@@ -57,11 +78,20 @@ public abstract class State {
 		return input.nextInt();
 	}
 	
-	// TO OVERRIDE
+	protected String getString(String request) {
+		System.out.printf("%s : ", request);
+		return input.next();
+	}
 	
-	protected State(String name) {this.name = name; input = new Scanner(System.in);}
+	protected String pause() {
+		System.out.println("Please Enter to continue");
+		return input.nextLine();
+	}
 	
-	protected abstract void initialize();
-	protected abstract void update();
-	protected abstract void exit();
+	// INTERFACE FOR CONTROLLER
+	
+	public final String name;
+	
+	// PRIVATE
+	private ArrayList<String> options = new ArrayList<String>();
 }
