@@ -36,8 +36,7 @@ public class RegisterMenu extends State {
 		user.password = getString("Password");
 		if(user.password.equals(getString("Confirm Password"))) {
 			UserDao.addUser(user);
-			controller.persistData.put("user", user);
-			changeState("UserMenu");
+			changeState("MainMenu");
 		}
 		else {
 			startPrint();
