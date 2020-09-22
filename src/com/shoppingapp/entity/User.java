@@ -12,7 +12,7 @@ public class User {
 	
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
+		this.purchases = new ArrayList<Invoice>();
 	}
 
 	public User(String name, String password, String email) {

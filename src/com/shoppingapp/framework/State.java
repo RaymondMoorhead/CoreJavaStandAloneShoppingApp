@@ -69,6 +69,10 @@ public abstract class State {
 			changeState(options.get(result - 1));
 	}
 	
+	protected void printSeparator() {
+		System.out.println("+===============================================+"); // 47 '='
+	}
+	
 	protected void endPrint() {
 		System.out.println("+===============================================+\n"); // 47 '='
 	}

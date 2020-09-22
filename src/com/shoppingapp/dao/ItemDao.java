@@ -8,7 +8,7 @@ import com.shoppingapp.entity.Item;
 public class ItemDao {
 	private static ArrayList<Item> items = new ArrayList<Item>();
 
-	public static List<Item> getItems(String name, String password) {
+	public static List<Item> getItems() {
 		return items;
 	}
 	

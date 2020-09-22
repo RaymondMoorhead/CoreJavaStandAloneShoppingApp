@@ -4,14 +4,14 @@ public class Item {
 
 	public String name;
 	public String code;
-	public double price;
+	public long price;
 	
 	public Item() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Item(String name, String code, double price) {
+	public Item(String name, String code, long price) {
 		super();
 		this.name = name;
 		this.code = code;
@@ -30,10 +30,10 @@ public class Item {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public double getPrice() {
+	public long getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice(long price) {
 		this.price = price;
 	}
 }
