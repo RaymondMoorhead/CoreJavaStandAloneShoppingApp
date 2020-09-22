@@ -32,20 +32,18 @@ public class RegisterMenu extends State {
 			inputOp();
 			return;
 		}
-		user.email = getString("Email");
-		user.password = getString("Password");
-		if(user.password.equals(getString("Confirm Password"))) {
+		
+		// email
+		while(!(user.email = getString("Email")).matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+			System.out.println("Please input a valid email");
+		}
+		
+		// password
+		while(!(user.password = getString("Password")).equals(getString("Confirm Password"))) {
+			System.out.println("Passwords don't match, please input them again");
+		}
 			UserDao.addUser(user);
 			changeState("MainMenu");
-		}
-		else {
-			startPrint();
-			print("Passwords don't match, do you wish to:");
-			printOp("RegisterMenu", "RETRY");
-			printOp("MainMenu", "RETURN TO MAIN MENU");
-			endPrint();
-			inputOp();
-		}
 	}
 
 	@Override
