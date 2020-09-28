@@ -5,6 +5,7 @@ import java.util.List;
 
 public class User {
 
+	public int id;
 	public String name;
 	public String password;
 	public String email;
@@ -15,14 +16,21 @@ public class User {
 		this.purchases = new ArrayList<Invoice>();
 	}
 
-	public User(String name, String password, String email) {
+	public User(int id, String name, String password, String email) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.purchases = new ArrayList<Invoice>();
 	}
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}

@@ -6,6 +6,7 @@ import com.shoppingapp.entity.User;
 import com.shoppingapp.framework.State;
 import com.shoppingapp.utility.ConsoleExtras;
 import com.shoppingapp.dao.ItemDao;
+import com.shoppingapp.dao.UserDao;
 
 public class BuyMenu extends State {
 	
@@ -42,7 +43,7 @@ public class BuyMenu extends State {
 		else if(result == 1) {
 			changeState("UserMenu");
 			if(!invoice.items.isEmpty())
-				user.addPurchase(invoice);
+				UserDao.addInvoice(user, invoice);
 		}
 		else if((result <= ItemDao.getItems().size() + 1) && (result > 0))
 			invoice.items.add(ItemDao.getItems().get(result - 2));

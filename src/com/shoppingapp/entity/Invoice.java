@@ -8,7 +8,7 @@ public class Invoice {
 
 	public String custName;
 	public LocalDate date;
-	public final int invoiceNum;
+	public int invoiceNum;
 	public List<Item> items;
 	
 	private static int lastInvoice = -1;

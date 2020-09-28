@@ -9,13 +9,13 @@ public abstract class State {
 	
 	// TO OVERRIDE
 	
-	protected State(String name) {this.name = name; input = new Scanner(System.in);}
-	
 	protected abstract void initialize();
 	protected abstract void update();
 	protected abstract void exit();
 	
 	// INTERFACE FOR EXTENDED CLASSES
+	
+	protected State(String name) {this.name = name; input = new Scanner(System.in);}
 	
 	protected StateController controller;
 	protected Scanner input;
@@ -30,12 +30,12 @@ public abstract class State {
 	}
 	
 	protected void startPrint() {
-		// clear screen (require support for ANSI escape codes)
+		// clear screen (requires support for ANSI escape codes)
 	    System.out.print(ConsoleExtras.ANSI_CLEAR);  
 	    System.out.flush();  
 	    
 	    System.out.println("    Standalone Ecommerce App");
-		System.out.println("+===============================================+"); // 47 '='
+	    printSeparator();
 		options.clear();
 	}
 	
@@ -74,7 +74,8 @@ public abstract class State {
 	}
 	
 	protected void endPrint() {
-		System.out.println("+===============================================+\n"); // 47 '='
+		printSeparator();
+		System.out.println();
 	}
 	
 	protected int getInt(String request) {

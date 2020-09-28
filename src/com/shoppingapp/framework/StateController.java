@@ -20,8 +20,8 @@ public class StateController {
 			if(changeState != null) {
 				curState.exit();
 				curState = states.get(changeState);
-				curState.initialize();
 				changeState = null;
+				curState.initialize();
 			}
 			else if(exit) {
 				curState.exit();

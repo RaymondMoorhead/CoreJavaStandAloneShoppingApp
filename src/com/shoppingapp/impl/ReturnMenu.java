@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 import com.shoppingapp.dao.ItemDao;
+import com.shoppingapp.dao.UserDao;
 import com.shoppingapp.entity.Invoice;
 import com.shoppingapp.entity.Item;
 import com.shoppingapp.entity.User;
@@ -85,7 +86,7 @@ public class ReturnMenu extends State {
 		for(int i = 0; i < invoice.items.size(); ++i) {
 			item = invoice.items.get(i);
 			if(item.code.contentEquals(itemCode)) {
-				invoice.items.remove(i);
+				UserDao.removeInvoiceItem(invoice, i);
 				System.out.println("Success");
 				break;
 			}
